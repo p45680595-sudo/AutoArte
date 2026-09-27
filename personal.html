@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>Personal</h1>
+
+    <table class="tabla-personal">
+
+        <tr>
+            <th>Gerente</th>
+            <th>Información</th>
+            <th>Trabajo</th>
+        </tr>
+
+        <tr>
+            <td contenteditable="true" id="gerente"></td>
+            <td contenteditable="true" id="informacion"></td>
+            <td contenteditable="true" id="trabajo"></td>
+        </tr>
+
+    </table>
+
+    <br>
+
+    <a href="index.html">← Volver al inicio</a>
+
+    <script>
+        const celdas = ["gerente", "informacion", "trabajo"];
+
+        celdas.forEach(id => {
+            const celda = document.getElementById(id);
+
+            const guardado = localStorage.getItem("personal_" + id);
+
+            if (guardado) {
+                celda.innerHTML = guardado;
+            }
+
+            celda.addEventListener("input", () => {
+                localStorage.setItem("personal_" + id, celda.innerHTML);
+            });
+        });
+    </script>
+
+</body>
+</html>
